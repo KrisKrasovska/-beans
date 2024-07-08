@@ -6,6 +6,7 @@ interface Theme extends DefaultTheme {
     primaryColor: string;
     bg: string;
 	 bgMain: string;
+	 secondaryColor: string;
   };
 }
 
@@ -24,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
 	 }
 	 main {
 	 flex-grow: 1;
+	 color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
 	 background-color: ${(p: { theme: Theme }) => p.theme.color.bgMain};
 	 }
   code {
@@ -40,6 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   a {
+  cursor:pointer;
     text-decoration: none
   }
 	 img {

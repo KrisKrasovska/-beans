@@ -12,7 +12,7 @@ const HomePage = () => {
   const [pageIndex, setPageIndex] = useState<number>(1);
   const lastItem: RefObject<HTMLLIElement> = createRef();
   const observer = useRef<IntersectionObserver | null>(null);
-  const [totalCounts, setTotalCounts] = useState<number>(1);
+  const [totalCounts, setTotalCounts] = useState<number>(10);
 
   useEffect(() => {
     const fetchInitialBeans = async () => {

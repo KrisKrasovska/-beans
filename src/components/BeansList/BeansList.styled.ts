@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../../utils/theme";
+import { NavLink } from "react-router-dom";
 
 export const List = styled.ul`
   display: flex;
@@ -17,7 +18,7 @@ export const List = styled.ul`
 export const Item = styled.li`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
   gap: 15px;
   width: 100%;
@@ -42,10 +43,11 @@ export const Item = styled.li`
   }
 `;
 
-export const BeansTitle = styled.p`
+export const BeansTitle = styled(NavLink)`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 20px;
   text-align: center;
+  display:block;
 `;
 
 export const BeansImg = styled.img`

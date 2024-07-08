@@ -12,6 +12,7 @@ import Facts from "./pages/Facts";
 import Recipes from "./pages/Recipes";
 import Combinations from "./pages/Combinations";
 import History from "./pages/History";
+import BeansPage from "./pages/BeansPage";
 
 const App: FC = () => {
   return (
@@ -33,6 +34,7 @@ const App: FC = () => {
 		<Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
+		  <Route path="/beans/:id" element={<BeansPage />} />
         <Route
           path="/facts"
           element={<Facts />}
