@@ -13,8 +13,16 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: 'Poppins', sans-serif;
     color: ${(p: { theme: Theme }) => p.theme.color.primaryColor};
-    background-color: ${(p: { theme: Theme }) => p.theme.color.bg};
+	 min-height: 100vh;
+
   }
+	 #root {
+	 	 display:flex;
+	 flex-direction:column;
+	 min-height: 100vh;
+	 }
+	 main {
+	 flex-grow: 1;}
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -31,4 +39,8 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none
   }
+	 img {
+	 width: 100%;
+	 height: auto;
+	 display:block;}
 `;

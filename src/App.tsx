@@ -8,6 +8,10 @@ import HomePage from "./pages/HomePage";
 import { Layout } from "./components/Layout/Layout";
 import NotFound from "./pages/NotFound";
 import { ToastContainer } from "react-toastify";
+import Facts from "./pages/Facts";
+import Recipes from "./pages/Recipes";
+import Combinations from "./pages/Combinations";
+import History from "./pages/History";
 
 const App: FC = () => {
   return (
@@ -26,23 +30,24 @@ const App: FC = () => {
         theme="colored"
       />
       <GlobalStyle />
-      <div>
-        <p>Работает</p>
-      </div>
 		<Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route
-          path="/register"
-          element={<HomePage />}
+          path="/facts"
+          element={<Facts />}
         />
         <Route
-          path="/login"
-          element={<HomePage />}
+          path="/recipes"
+          element={<Recipes />}
         />
         <Route
-          path="/contacts"
-          element={<HomePage />}
+          path="/combinations"
+          element={<Combinations />}
+        />
+		<Route
+          path="/history"
+          element={<History />}
         />
       </Route>
       <Route path="*" element={<NotFound />} />

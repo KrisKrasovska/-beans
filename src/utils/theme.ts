@@ -1,4 +1,4 @@
-interface Theme {
+export interface Theme {
   color: {
     primaryColor: string;
     secondaryColor: string;
@@ -10,10 +10,10 @@ interface Theme {
 
 export const theme: Theme = {
   color: {
-    primaryColor: "#EBD8FF",
+    primaryColor: "#ffffff",
     secondaryColor: "#373737",
-    bg: "#a1a1a1",
-    bgBtn: "#EBD8FF",
-    accentColor: "#5CD3A8",
+    bg: "#903710",
+    bgBtn: "#d5612f",
+    accentColor: "#ffe85a",
   },
 };

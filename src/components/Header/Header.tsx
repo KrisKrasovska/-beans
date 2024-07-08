@@ -1,23 +1,28 @@
-import { Link, Navigate } from "./Header.styled";
+import { HeaderBlock, Link, LogoImg, Navigate, NavigationContainer } from "./Header.styled";
 import logo from '../../images/logo.png'
+import { Container } from "../../pages/Home.styled";
 
  const Header = () => {
   return (
-    <header>
+    <HeaderBlock>
+		<Container>
       <Navigate>
-        <Link to="/" end>
-		  <img
+        <Link to="/">
+		  <LogoImg
       src={logo}
       alt="logo"
 		width={100}
     />
         </Link>
+		  <NavigationContainer>
         <Link to="/facts">Факты</Link>
 		  <Link to="/recipes">Рецепты</Link>
 		  <Link to="/combinations">Сочетания</Link>
 		  <Link to="/history">История</Link>
+		  </NavigationContainer>
       </Navigate>
-    </header>
+		</Container>
+    </HeaderBlock>
   );
 };
 

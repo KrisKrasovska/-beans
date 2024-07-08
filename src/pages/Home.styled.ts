@@ -10,6 +10,10 @@ margin: 0 auto;
 width: 768px;
 padding: 0 30px;
 }
+@media screen and (min-width: 1200px) {
+width: 1200px;
+padding: 0 50px;
+}
 @media screen and (min-width: 1400px) {
 width: 1440px;
 padding: 0 100px;
