@@ -63,6 +63,7 @@ export const CardImage = styled.img`
 `;
 
 export const Button = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,6 +72,13 @@ export const Button = styled.button`
   border: 1px solid ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   background-color: transparent;
   border-radius: 10px;
+
+  transition: color 200ms linear;
+
+  &:hover,
+  &:focus {
+    color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
+  }
 `;
 
 export const BottomContent = styled.div`

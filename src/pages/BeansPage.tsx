@@ -12,6 +12,7 @@ import {
   Section,
   Button,
 } from "./Home.styled";
+import { CardText, CardTitle } from "../components/BeansList/BeansList.styled";
 
 const BeansPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -53,39 +54,39 @@ const BeansPage = () => {
             Something went wrong, please reload the page...
           </ErrorMessage>
         )}
-        <p>{bean?.flavorName}</p>
+        <CardTitle>{bean?.flavorName}</CardTitle>
         <CardImage src={bean?.imageUrl} alt="bean" width={200} />
-        <p>{bean?.description}</p>
-        <p>Name group: {bean?.groupName.join(", ")}</p>
-        <p>Ingredients: {bean?.ingredients.join(", ")}</p>
+        <CardText>{bean?.description}</CardText>
+        <CardText>Name group: {bean?.groupName.join(", ")}</CardText>
+        <CardText>Ingredients: {bean?.ingredients.join(", ")}</CardText>
         <CardList>
           <li>
             <p>Color group:</p>
-            <p>{bean?.colorGroup}</p>
+            <CardText>{bean?.colorGroup}</CardText>
           </li>
           <li>
             <p>Hexadecimal Color:</p>
-            <p>{bean?.backgroundColor}</p>
+            <CardText>{bean?.backgroundColor}</CardText>
           </li>
           <li>
             <p>ID:</p>
-            <p>{bean?.beanId}</p>
+            <CardText>{bean?.beanId}</CardText>
           </li>
           <li>
             <p>Kosher:</p>
-            <p>{bean?.kosher ? "Yes" : "No"}</p>
+            <CardText>{bean?.kosher ? "Yes" : "No"}</CardText>
           </li>
           <li>
             <p>Seasonal:</p>
-            <p>{bean?.seasonal ? "Yes" : "No"}</p>
+            <CardText>{bean?.seasonal ? "Yes" : "No"}</CardText>
           </li>
           <li>
             <p>Gluten free:</p>
-            <p>{bean?.glutenFree ? "Yes" : "No"}</p>
+            <CardText>{bean?.glutenFree ? "Yes" : "No"}</CardText>
           </li>
           <li>
             <p>Sugar free:</p>
-            <p>{bean?.sugarFree ? "Yes" : "No"}</p>
+            <CardText>{bean?.sugarFree ? "Yes" : "No"}</CardText>
           </li>
         </CardList>
       </Card>
