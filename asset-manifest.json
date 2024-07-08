@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/beans/static/css/main.33e5887b.css",
-    "main.js": "/beans/static/js/main.e02f4a99.js",
+    "main.js": "/beans/static/js/main.10c72e37.js",
     "static/media/logo.png": "/beans/static/media/logo.3e89a2734a7ba420078b.png",
     "index.html": "/beans/index.html",
     "main.33e5887b.css.map": "/beans/static/css/main.33e5887b.css.map",
-    "main.e02f4a99.js.map": "/beans/static/js/main.e02f4a99.js.map"
+    "main.10c72e37.js.map": "/beans/static/js/main.10c72e37.js.map"
   },
   "entrypoints": [
     "static/css/main.33e5887b.css",
-    "static/js/main.e02f4a99.js"
+    "static/js/main.10c72e37.js"
   ]
 }
