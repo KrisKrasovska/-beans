@@ -29,7 +29,6 @@ const FactsList: FC<PropsFactsList> = ({ factsList, lastItem }) => {
               id={factId}
               title={title}
               description={description}
-              ref={lastItem}
             />
           );
         }

@@ -24,3 +24,9 @@ export type FactsType = {
   title: string;
   description: string;
 };
+
+export type CombinationType = {
+	combinationId: number;
+	name: string;
+	tag: string[];
+ };
