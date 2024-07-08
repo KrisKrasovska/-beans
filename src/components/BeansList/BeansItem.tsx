@@ -16,7 +16,7 @@ const BeansItem = forwardRef<HTMLLIElement, PropsBeansItem>(
   ) => {
     return (
       <Item ref={ref}>
-        <BeansTitle to={`/beans/${beanId}`}>{flavorName}</BeansTitle>
+        <BeansTitle to={`beans/${beanId}`}>{flavorName}</BeansTitle>
         <BeansImg src={imageUrl} alt="beans" width={150} />
         <BeansText>{description}</BeansText>
       </Item>
