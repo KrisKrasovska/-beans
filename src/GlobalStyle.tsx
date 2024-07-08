@@ -5,6 +5,7 @@ interface Theme extends DefaultTheme {
   color: {
     primaryColor: string;
     bg: string;
+	 bgMain: string;
   };
 }
 
@@ -22,7 +23,9 @@ export const GlobalStyle = createGlobalStyle`
 	 min-height: 100vh;
 	 }
 	 main {
-	 flex-grow: 1;}
+	 flex-grow: 1;
+	 background-color: ${(p: { theme: Theme }) => p.theme.color.bgMain};
+	 }
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

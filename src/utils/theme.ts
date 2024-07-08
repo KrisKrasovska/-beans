@@ -3,6 +3,7 @@ export interface Theme {
     primaryColor: string;
     secondaryColor: string;
     bg: string;
+	 bgMain: string;
     bgBtn: string;
     accentColor: string;
   };
@@ -11,8 +12,9 @@ export interface Theme {
 export const theme: Theme = {
   color: {
     primaryColor: "#ffffff",
-    secondaryColor: "#373737",
+    secondaryColor: "#903710",
     bg: "#903710",
+	 bgMain: "#e1cbbe",
     bgBtn: "#d5612f",
     accentColor: "#ffe85a",
   },

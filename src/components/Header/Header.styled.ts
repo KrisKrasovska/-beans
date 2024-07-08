@@ -13,8 +13,9 @@ export const HeaderBlock = styled.header`
 export const Link = styled(NavLink)`
   color: #ffffff;
   font-size: 14px;
+  transition: color 200ms linear;
   &:hover,
-  a:focus {
+  &:focus {
     color: ${(p: { theme: Theme }) => p.theme.color.accentColor};
   }
   @media screen and (min-width: 768px) {
