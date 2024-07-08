@@ -59,3 +59,15 @@ export const BeansText = styled.p`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 16px;
 `;
+
+export const CardTitle = styled.p`
+  color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
+  font-size: 20px;
+  text-align: center;
+  display:block;
+`;
+
+export const CardText = styled.p`
+  color: ${(p: { theme: Theme }) => p.theme.color.thirdColor};
+  font-size: 14px;
+`;

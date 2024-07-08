@@ -18,3 +18,9 @@ export type BeanCard = {
   seasonal: boolean;
   kosher: boolean;
 };
+
+export type FactsType = {
+  factId: string;
+  title: string;
+  description: string;
+};
