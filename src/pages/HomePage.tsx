@@ -47,7 +47,7 @@ const HomePage = () => {
         setLoading(false);
       }
     };
-    if (beansList.length <= totalCounts) fetchInitialBeans();
+    if (pageIndex <= totalCounts / 10) fetchInitialBeans();
   }, [pageIndex, totalCounts]);
 
   useEffect(() => {
