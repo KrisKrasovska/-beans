@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ForwardedRef, forwardRef } from "react";
 import { Item, BeansTitle, BeansText, BeansImg } from "./BeansList.styled";
 
 type PropsBeansItem = {
@@ -7,18 +7,15 @@ type PropsBeansItem = {
   description: string;
 };
 
-const BeansItem: FC<PropsBeansItem> = ({
-  flavorName,
-  imageUrl,
-  description,
-}) => {
-  return (
-    <Item>
+const BeansItem = forwardRef<HTMLLIElement, PropsBeansItem>(
+	({ flavorName, imageUrl, description, ...props }, ref: ForwardedRef<HTMLLIElement>) => {
+	  return (
+    <Item ref={ref}>
       <BeansTitle>{flavorName}</BeansTitle>
       <BeansImg src={imageUrl} alt="beans" width={150} />
       <BeansText>{description}</BeansText>
     </Item>
   );
-};
+});
 
 export default BeansItem;

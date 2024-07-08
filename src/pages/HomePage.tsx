@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { createRef, RefObject, useEffect, useRef, useState } from "react";
 import { ErrorMessage, Section, Title } from "./Home.styled";
 import axios from "axios";
 import { Loader } from "../components/Loader/Loader";
@@ -10,10 +10,12 @@ const HomePage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [pageIndex, setPageIndex] = useState<number>(1);
+  const lastItem: RefObject<HTMLLIElement> = createRef();
   const observer = useRef<IntersectionObserver | null>(null);
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const [totalCounts, setTotalCounts] = useState<number>(1);
+
   useEffect(() => {
-    const fetchBeans = async () => {
+    const fetchInitialBeans = async () => {
       setLoading(true);
       try {
         const results = await axios.get(
@@ -28,7 +30,16 @@ const HomePage = () => {
             description,
           })
         );
-        setBeansList((prevBeansList) => [...prevBeansList, ...normalizedData]);
+        setBeansList((prevBeansList) => {
+          const newBeansList = normalizedData.filter(
+            (newItem) =>
+              !prevBeansList.some(
+                (prevItem) => prevItem.beanId === newItem.beanId
+              )
+          );
+          return [...prevBeansList, ...newBeansList];
+        });
+        setTotalCounts(data.totalCount);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -36,37 +47,39 @@ const HomePage = () => {
         setLoading(false);
       }
     };
-    fetchBeans();
-  }, [pageIndex]);
+    if (beansList.length <= totalCounts) fetchInitialBeans();
+  }, [pageIndex, totalCounts]);
 
   useEffect(() => {
-    if (loading) return;
-
-    if (observer.current) observer.current.disconnect();
+    if (observer.current) {
+      observer.current.disconnect();
+    }
 
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        setPageIndex((prevPageIndex) => prevPageIndex + 1);
+        if (pageIndex < totalCounts / 10)
+          setPageIndex((prevPage) => prevPage + 1);
       }
     });
 
-    if (loadMoreRef.current) {
-      observer.current.observe(loadMoreRef.current);
+    if (lastItem.current) {
+      observer.current.observe(lastItem.current);
     }
-  }, [loading]);
+  }, [lastItem, totalCounts, pageIndex]);
+
   return (
     <Section>
       <Title>Все о фасоли</Title>
       {beansList.length > 0 && !loading && !error && (
-        <BeansList beansList={beansList} />
+        <BeansList lastItem={lastItem} beansList={beansList} />
       )}
-      {loading && !error && <Loader />}
+
       {!loading && error && (
         <ErrorMessage>
           Что-то пошло не так, перезагрузите страницу...
         </ErrorMessage>
       )}
-      <div ref={loadMoreRef} />
+      {loading && <Loader />}
     </Section>
   );
 };
