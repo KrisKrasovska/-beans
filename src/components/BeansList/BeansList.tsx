@@ -27,7 +27,7 @@ const BeansList: FC<PropsBeansList> = ({ beansList, lastItem }) => {
           return (
             <BeansItem
               key={beanId}
-				  beanId={beanId}
+              beanId={beanId}
               flavorName={flavorName}
               imageUrl={imageUrl}
               description={description}

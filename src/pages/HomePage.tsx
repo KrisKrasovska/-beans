@@ -43,7 +43,7 @@ const HomePage = () => {
         setLoading(false);
       } catch (error) {
         console.log(error);
-        setError("Ошибка");
+        setError("Error! Try again or return to home page");
         setLoading(false);
       }
     };
@@ -69,17 +69,17 @@ const HomePage = () => {
 
   return (
     <Section>
-      <Title>Все о фасоли</Title>
-      {beansList.length > 0 && !loading && !error && (
+      <Title>All about bean</Title>
+      {beansList.length > 0 && !error && (
         <BeansList lastItem={lastItem} beansList={beansList} />
       )}
 
       {!loading && error && (
         <ErrorMessage>
-          Что-то пошло не так, перезагрузите страницу...
+          Something went wrong, please reload the page...
         </ErrorMessage>
       )}
-      {loading && <Loader />}
+      {loading && beansList.length === 0 && <Loader />}
     </Section>
   );
 };

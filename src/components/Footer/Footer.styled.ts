@@ -6,11 +6,10 @@ export const FooterBlock = styled.footer`
   background-color: ${(p: { theme: Theme }) => p.theme.color.bg};
   & div {
     width: 100%;
-	 text-align: center;
+    text-align: center;
   }
 `;
 
 export const FooterText = styled.p`
-font-size: 16px;
-`
-
+  font-size: 16px;
+`;

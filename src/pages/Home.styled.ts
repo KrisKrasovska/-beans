@@ -71,4 +71,11 @@ export const Button = styled.button`
   border: 1px solid ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   background-color: transparent;
   border-radius: 10px;
-`
+`;
+
+export const BottomContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 15px;
+`;

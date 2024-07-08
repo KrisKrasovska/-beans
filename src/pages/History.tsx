@@ -36,7 +36,7 @@ const History = () => {
         setLoading(false);
       } catch (error) {
         console.log(error);
-        setError("Ошибка");
+        setError("Error! Try again or return to home page");
         setLoading(false);
       }
     };
@@ -62,17 +62,17 @@ const History = () => {
 
   return (
     <Section>
-      <Title>История</Title>
-      {historyList.length > 0 && !loading && !error && (
+      <Title>History of beans</Title>
+      {historyList.length > 0 && !error && (
         <HistoryList lastItem={lastItem} historyList={historyList} />
       )}
 
       {!loading && error && (
         <ErrorMessage>
-          Что-то пошло не так, перезагрузите страницу...
+          Something went wrong, please reload the page...
         </ErrorMessage>
       )}
-      {loading && <Loader />}
+      {loading && historyList.length === 0 && <Loader />}
     </Section>
   );
 };

@@ -38,7 +38,7 @@ const Combinations = () => {
         setLoading(false);
       } catch (error) {
         console.log(error);
-        setError("Ошибка");
+        setError("Error! Try again or return to home page");
         setLoading(false);
       }
     };
@@ -64,8 +64,8 @@ const Combinations = () => {
 
   return (
     <Section>
-      <Title>Как можно сочетать?</Title>
-      {combinationsList.length > 0 && !loading && !error && (
+      <Title>How can you combine?</Title>
+      {combinationsList.length > 0 && !error && (
         <CombinationsList
           lastItem={lastItem}
           combinationsList={combinationsList}
@@ -74,10 +74,10 @@ const Combinations = () => {
 
       {!loading && error && (
         <ErrorMessage>
-          Что-то пошло не так, перезагрузите страницу...
+          Something went wrong, please reload the page...
         </ErrorMessage>
       )}
-      {loading && <Loader />}
+      {loading && combinationsList.length === 0 && <Loader />}
     </Section>
   );
 };
