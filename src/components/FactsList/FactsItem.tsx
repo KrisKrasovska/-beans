@@ -2,8 +2,8 @@ import { ForwardedRef, forwardRef } from "react";
 import { CardText, CardTitle, Item } from "../BeansList/BeansList.styled";
 
 type PropsFactsItem = {
-  title: string;
-  id: string;
+  title: string | number;
+  id: string | number;
   description: string;
 };
 

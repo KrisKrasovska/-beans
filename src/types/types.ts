@@ -30,3 +30,9 @@ export type CombinationType = {
 	name: string;
 	tag: string[];
  };
+
+ export type MileStone = {
+	mileStoneId: number;
+	year: number;
+	description: string;
+ };
