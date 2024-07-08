@@ -35,12 +35,12 @@ const App: FC = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="beans/:id" element={<BeansPage />} />
-          <Route path="facts" element={<Facts />} />
-          <Route path="recipes" element={<Recipes />} />
-          <Route path="recipes/:id" element={<RecipesPage />} />
-          <Route path="combinations" element={<Combinations />} />
-          <Route path="history" element={<History />} />
+          <Route path="/beans/:id" element={<BeansPage />} />
+          <Route path="/facts" element={<Facts />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:id" element={<RecipesPage />} />
+          <Route path="/combinations" element={<Combinations />} />
+          <Route path="/history" element={<History />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
