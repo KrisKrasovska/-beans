@@ -21,7 +21,7 @@ const RecipesItem = forwardRef<HTMLLIElement, PropsRecipesItem>(
         <CardText>{description}</CardText>
         <CardText>{makingAmount}</CardText>
         <CardText>{totalTime}</CardText>
-        <Link to={`recipes/${recipeId}`}>View more details</Link>
+        <Link to={`/recipes/${recipeId}`}>View more details</Link>
       </Item>
     );
   }
