@@ -13,11 +13,12 @@ import Recipes from "./pages/Recipes";
 import Combinations from "./pages/Combinations";
 import History from "./pages/History";
 import BeansPage from "./pages/BeansPage";
+import RecipesPage from "./pages/RecipesPage";
 
 const App: FC = () => {
   return (
     <ThemeProvider theme={theme}>
-		      <ToastContainer
+      <ToastContainer
         icon={false}
         position="top-right"
         autoClose={5000}
@@ -31,29 +32,18 @@ const App: FC = () => {
         theme="colored"
       />
       <GlobalStyle />
-		<Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-		  <Route path="/beans/:id" element={<BeansPage />} />
-        <Route
-          path="/facts"
-          element={<Facts />}
-        />
-        <Route
-          path="/recipes"
-          element={<Recipes />}
-        />
-        <Route
-          path="/combinations"
-          element={<Combinations />}
-        />
-		<Route
-          path="/history"
-          element={<History />}
-        />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/beans/:id" element={<BeansPage />} />
+          <Route path="/facts" element={<Facts />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:id" element={<RecipesPage />} />
+          <Route path="/combinations" element={<Combinations />} />
+          <Route path="/history" element={<History />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </ThemeProvider>
   );
 };

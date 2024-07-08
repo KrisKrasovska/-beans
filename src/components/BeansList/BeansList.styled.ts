@@ -23,7 +23,7 @@ export const Item = styled.li`
   gap: 15px;
   width: 100%;
   border: 1px solid ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
-  padding: 10px;
+  padding: 15px;
   border-radius: 15px;
 
   transition: border 200ms linear;
@@ -47,7 +47,7 @@ export const BeansTitle = styled(NavLink)`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 20px;
   text-align: center;
-  display:block;
+  display: block;
 `;
 
 export const BeansImg = styled.img`
@@ -64,7 +64,7 @@ export const CardTitle = styled.p`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 20px;
   text-align: center;
-  display:block;
+  display: block;
 `;
 
 export const CardText = styled.p`
