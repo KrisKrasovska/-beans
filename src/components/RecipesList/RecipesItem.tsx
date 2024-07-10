@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef } from 'react'
+import { FC } from 'react'
 import { CardText, CardTitle, Item } from '../BeansList/BeansList.styled'
 import { Link } from 'react-router-dom'
 
@@ -10,21 +10,22 @@ type PropsRecipesItem = {
   makingAmount: string
 }
 
-const RecipesItem = forwardRef<HTMLLIElement, PropsRecipesItem>(
-  (
-    { recipeId, name, description, totalTime, makingAmount, ...props },
-    ref: ForwardedRef<HTMLLIElement>
-  ) => {
-    return (
-      <Item ref={ref}>
-        <CardTitle>{name}</CardTitle>
-        <CardText>{description}</CardText>
-        <CardText>{makingAmount}</CardText>
-        <CardText>{totalTime}</CardText>
-        <Link to={`/recipes/${recipeId}`}>View more details</Link>
-      </Item>
-    )
-  }
-)
+const RecipesItem: FC<PropsRecipesItem> = ({
+  recipeId,
+  name,
+  description,
+  totalTime,
+  makingAmount,
+}) => {
+  return (
+    <Item>
+      <CardTitle>{name}</CardTitle>
+      <CardText>{description}</CardText>
+      <CardText>{makingAmount}</CardText>
+      <CardText>{totalTime}</CardText>
+      <Link to={`/recipes/${recipeId}`}>View more details</Link>
+    </Item>
+  )
+}
 
 export default RecipesItem
