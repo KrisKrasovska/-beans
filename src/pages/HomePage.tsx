@@ -1,4 +1,4 @@
-import { createRef, RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ErrorMessage, Section, Title } from './Home.styled'
 import axios from 'axios'
 import { Loader } from '../components/Loader/Loader'
@@ -10,8 +10,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [pageIndex, setPageIndex] = useState<number>(1)
-  const lastItem: RefObject<HTMLLIElement> = createRef()
-  const observer = useRef<IntersectionObserver | null>(null)
+  const observerTarget = useRef<HTMLDivElement | null>(null)
   const [totalCounts, setTotalCounts] = useState<number>(10)
 
   useEffect(() => {
@@ -22,6 +21,7 @@ const HomePage = () => {
           `https://jellybellywikiapi.onrender.com/api/beans?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
+        console.log(data)
         const normalizedData: BeanType[] = data.items.map(
           ({ beanId, flavorName, imageUrl, description }: BeanType) => ({
             beanId,
@@ -47,32 +47,40 @@ const HomePage = () => {
         setLoading(false)
       }
     }
-    if (pageIndex <= totalCounts / 10) fetchInitialBeans()
+    if (pageIndex <= Math.ceil(totalCounts / 10)) {
+      fetchInitialBeans()
+    }
   }, [pageIndex, totalCounts])
 
   useEffect(() => {
-    if (observer.current) {
-      observer.current.disconnect()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (entries[0].isIntersecting) {
+            if (pageIndex <= Math.ceil(totalCounts / 10)) {
+              setPageIndex((prevPage) => prevPage + 1)
+            }
+          }
+        }
+      },
+      { threshold: 1 }
+    )
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current)
     }
 
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (pageIndex < totalCounts / 10)
-          setPageIndex((prevPage) => prevPage + 1)
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current)
       }
-    })
-
-    if (lastItem.current) {
-      observer.current.observe(lastItem.current)
     }
-  }, [lastItem, totalCounts, pageIndex])
+  }, [observerTarget])
 
   return (
     <Section>
       <Title>All about bean</Title>
-      {beansList.length > 0 && !error && (
-        <BeansList lastItem={lastItem} beansList={beansList} />
-      )}
+      {beansList.length > 0 && !error && <BeansList beansList={beansList} />}
 
       {!loading && error && (
         <ErrorMessage>
@@ -80,6 +88,7 @@ const HomePage = () => {
         </ErrorMessage>
       )}
       {loading && beansList.length === 0 && <Loader />}
+      <div ref={observerTarget}></div>
     </Section>
   )
 }

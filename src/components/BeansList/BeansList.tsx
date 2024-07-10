@@ -5,10 +5,9 @@ import { List } from './BeansList.styled'
 
 type PropsBeansList = {
   beansList: BeanType[]
-  lastItem: RefObject<HTMLLIElement>
 }
 
-const BeansList: FC<PropsBeansList> = ({ beansList, lastItem }) => {
+const BeansList: FC<PropsBeansList> = ({ beansList }) => {
   return (
     <List>
       {beansList.map(({ beanId, flavorName, imageUrl, description }, index) => {
@@ -20,7 +19,6 @@ const BeansList: FC<PropsBeansList> = ({ beansList, lastItem }) => {
               flavorName={flavorName}
               imageUrl={imageUrl}
               description={description}
-              ref={lastItem}
             />
           )
         } else {
