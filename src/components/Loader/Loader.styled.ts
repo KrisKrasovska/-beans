@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const LoaderContainer = styled.div`
   display: flex;
@@ -6,4 +6,4 @@ export const LoaderContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 50vh;
-`;
+`

@@ -1,12 +1,12 @@
-import { FC, RefObject } from "react";
-import { MileStone } from "../../types/types";
-import { List } from "../BeansList/BeansList.styled";
-import FactsItem from "../FactsList/FactsItem";
+import { FC, RefObject } from 'react'
+import { MileStone } from '../../types/types'
+import { List } from '../BeansList/BeansList.styled'
+import FactsItem from '../FactsList/FactsItem'
 
 type PropsHistoryList = {
-  historyList: MileStone[];
-  lastItem: RefObject<HTMLLIElement>;
-};
+  historyList: MileStone[]
+  lastItem: RefObject<HTMLLIElement>
+}
 
 const HistoryList: FC<PropsHistoryList> = ({ historyList, lastItem }) => {
   return (
@@ -21,7 +21,7 @@ const HistoryList: FC<PropsHistoryList> = ({ historyList, lastItem }) => {
               description={description}
               ref={lastItem}
             />
-          );
+          )
         } else {
           return (
             <FactsItem
@@ -30,11 +30,11 @@ const HistoryList: FC<PropsHistoryList> = ({ historyList, lastItem }) => {
               title={year}
               description={description}
             />
-          );
+          )
         }
       })}
     </List>
-  );
-};
+  )
+}
 
-export default HistoryList;
+export default HistoryList

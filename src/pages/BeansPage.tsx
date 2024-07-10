@@ -1,9 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Loader } from "../components/Loader/Loader";
-import { BeanCard } from "../types/types";
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { Loader } from '../components/Loader/Loader'
+import { BeanCard } from '../types/types'
 import {
   Card,
   CardImage,
@@ -11,38 +11,38 @@ import {
   ErrorMessage,
   Section,
   Button,
-} from "./Home.styled";
-import { CardText, CardTitle } from "../components/BeansList/BeansList.styled";
+} from './Home.styled'
+import { CardText, CardTitle } from '../components/BeansList/BeansList.styled'
 
 const BeansPage = () => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const { id } = useParams();
-  const [bean, setBean] = useState<BeanCard | null>(null);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+  const { id } = useParams()
+  const [bean, setBean] = useState<BeanCard | null>(null)
+  const navigate = useNavigate()
 
   const handleBackClick = () => {
-    navigate(-1);
-  };
+    navigate(-1)
+  }
 
   useEffect(() => {
     const fetchBean = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
         const searchBean = await axios.get(
           `https://jellybellywikiapi.onrender.com/api/beans/${id}`
-        );
-        setBean(searchBean.data);
-        setLoading(false);
+        )
+        setBean(searchBean.data)
+        setLoading(false)
       } catch (err) {
-        toast.error("Error! Try again or return to home page");
-        console.log(err);
-        setLoading(false);
-        setError("Error! Try again or return to home page");
+        toast.error('Error! Try again or return to home page')
+        console.log(err)
+        setLoading(false)
+        setError('Error! Try again or return to home page')
       }
-    };
-    fetchBean();
-  }, [id]);
+    }
+    fetchBean()
+  }, [id])
 
   return (
     <Section>
@@ -55,10 +55,10 @@ const BeansPage = () => {
           </ErrorMessage>
         )}
         <CardTitle>{bean?.flavorName}</CardTitle>
-        <CardImage src={bean?.imageUrl} alt="bean" width={200} />
+        <CardImage src={bean?.imageUrl} alt='bean' width={200} />
         <CardText>{bean?.description}</CardText>
-        <CardText>Name group: {bean?.groupName.join(", ")}</CardText>
-        <CardText>Ingredients: {bean?.ingredients.join(", ")}</CardText>
+        <CardText>Name group: {bean?.groupName.join(', ')}</CardText>
+        <CardText>Ingredients: {bean?.ingredients.join(', ')}</CardText>
         <CardList>
           <li>
             <p>Color group:</p>
@@ -74,24 +74,24 @@ const BeansPage = () => {
           </li>
           <li>
             <p>Kosher:</p>
-            <CardText>{bean?.kosher ? "Yes" : "No"}</CardText>
+            <CardText>{bean?.kosher ? 'Yes' : 'No'}</CardText>
           </li>
           <li>
             <p>Seasonal:</p>
-            <CardText>{bean?.seasonal ? "Yes" : "No"}</CardText>
+            <CardText>{bean?.seasonal ? 'Yes' : 'No'}</CardText>
           </li>
           <li>
             <p>Gluten free:</p>
-            <CardText>{bean?.glutenFree ? "Yes" : "No"}</CardText>
+            <CardText>{bean?.glutenFree ? 'Yes' : 'No'}</CardText>
           </li>
           <li>
             <p>Sugar free:</p>
-            <CardText>{bean?.sugarFree ? "Yes" : "No"}</CardText>
+            <CardText>{bean?.sugarFree ? 'Yes' : 'No'}</CardText>
           </li>
         </CardList>
       </Card>
     </Section>
-  );
-};
+  )
+}
 
-export default BeansPage;
+export default BeansPage

@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import { Theme } from "../../utils/theme";
+import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
+import { Theme } from '../../utils/theme'
 
 export const HeaderBlock = styled.header`
   padding: 20px 0;
@@ -8,7 +8,7 @@ export const HeaderBlock = styled.header`
   & div {
     width: 100%;
   }
-`;
+`
 
 export const Link = styled(NavLink)`
   color: #ffffff;
@@ -21,7 +21,7 @@ export const Link = styled(NavLink)`
   @media screen and (min-width: 768px) {
     font-size: 18px;
   }
-`;
+`
 
 export const Navigate = styled.nav`
   display: flex;
@@ -31,14 +31,14 @@ export const Navigate = styled.nav`
   @media screen and (min-width: 768px) {
     flex-direction: row;
   }
-`;
+`
 
 export const LogoImg = styled.img`
   width: 100px;
   @media screen and (max-width: 767px) {
     margin-bottom: 20px;
   }
-`;
+`
 
 export const NavigationContainer = styled.div`
   display: flex;
@@ -52,4 +52,4 @@ export const NavigationContainer = styled.div`
   @media screen and (min-width: 1200px) {
     gap: 30px;
   }
-`;
+`

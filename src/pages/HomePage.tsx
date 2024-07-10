@@ -1,27 +1,27 @@
-import { createRef, RefObject, useEffect, useRef, useState } from "react";
-import { ErrorMessage, Section, Title } from "./Home.styled";
-import axios from "axios";
-import { Loader } from "../components/Loader/Loader";
-import { BeanType } from "../types/types";
-import BeansList from "../components/BeansList/BeansList";
+import { createRef, RefObject, useEffect, useRef, useState } from 'react'
+import { ErrorMessage, Section, Title } from './Home.styled'
+import axios from 'axios'
+import { Loader } from '../components/Loader/Loader'
+import { BeanType } from '../types/types'
+import BeansList from '../components/BeansList/BeansList'
 
 const HomePage = () => {
-  const [beansList, setBeansList] = useState<BeanType[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [pageIndex, setPageIndex] = useState<number>(1);
-  const lastItem: RefObject<HTMLLIElement> = createRef();
-  const observer = useRef<IntersectionObserver | null>(null);
-  const [totalCounts, setTotalCounts] = useState<number>(10);
+  const [beansList, setBeansList] = useState<BeanType[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+  const [pageIndex, setPageIndex] = useState<number>(1)
+  const lastItem: RefObject<HTMLLIElement> = createRef()
+  const observer = useRef<IntersectionObserver | null>(null)
+  const [totalCounts, setTotalCounts] = useState<number>(10)
 
   useEffect(() => {
     const fetchInitialBeans = async () => {
-      setLoading(true);
+      setLoading(true)
       try {
         const results = await axios.get(
           `https://jellybellywikiapi.onrender.com/api/beans?pageIndex=${pageIndex}&pageSize=10`
-        );
-        const { data } = results;
+        )
+        const { data } = results
         const normalizedData: BeanType[] = data.items.map(
           ({ beanId, flavorName, imageUrl, description }: BeanType) => ({
             beanId,
@@ -29,43 +29,43 @@ const HomePage = () => {
             imageUrl,
             description,
           })
-        );
+        )
         setBeansList((prevBeansList) => {
           const newBeansList = normalizedData.filter(
             (newItem) =>
               !prevBeansList.some(
                 (prevItem) => prevItem.beanId === newItem.beanId
               )
-          );
-          return [...prevBeansList, ...newBeansList];
-        });
-        setTotalCounts(data.totalCount);
-        setLoading(false);
+          )
+          return [...prevBeansList, ...newBeansList]
+        })
+        setTotalCounts(data.totalCount)
+        setLoading(false)
       } catch (error) {
-        console.log(error);
-        setError("Error! Try again or return to home page");
-        setLoading(false);
+        console.log(error)
+        setError('Error! Try again or return to home page')
+        setLoading(false)
       }
-    };
-    if (pageIndex <= totalCounts / 10) fetchInitialBeans();
-  }, [pageIndex, totalCounts]);
+    }
+    if (pageIndex <= totalCounts / 10) fetchInitialBeans()
+  }, [pageIndex, totalCounts])
 
   useEffect(() => {
     if (observer.current) {
-      observer.current.disconnect();
+      observer.current.disconnect()
     }
 
     observer.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         if (pageIndex < totalCounts / 10)
-          setPageIndex((prevPage) => prevPage + 1);
+          setPageIndex((prevPage) => prevPage + 1)
       }
-    });
+    })
 
     if (lastItem.current) {
-      observer.current.observe(lastItem.current);
+      observer.current.observe(lastItem.current)
     }
-  }, [lastItem, totalCounts, pageIndex]);
+  }, [lastItem, totalCounts, pageIndex])
 
   return (
     <Section>
@@ -81,7 +81,7 @@ const HomePage = () => {
       )}
       {loading && beansList.length === 0 && <Loader />}
     </Section>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

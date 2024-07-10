@@ -1,12 +1,12 @@
-import { FC, RefObject } from "react";
-import { FactsType } from "../../types/types";
-import FactsItem from "./FactsItem";
-import { List } from "../BeansList/BeansList.styled";
+import { FC, RefObject } from 'react'
+import { FactsType } from '../../types/types'
+import FactsItem from './FactsItem'
+import { List } from '../BeansList/BeansList.styled'
 
 type PropsFactsList = {
-  factsList: FactsType[];
-  lastItem: RefObject<HTMLLIElement>;
-};
+  factsList: FactsType[]
+  lastItem: RefObject<HTMLLIElement>
+}
 
 const FactsList: FC<PropsFactsList> = ({ factsList, lastItem }) => {
   return (
@@ -21,7 +21,7 @@ const FactsList: FC<PropsFactsList> = ({ factsList, lastItem }) => {
               description={description}
               ref={lastItem}
             />
-          );
+          )
         } else {
           return (
             <FactsItem
@@ -30,11 +30,11 @@ const FactsList: FC<PropsFactsList> = ({ factsList, lastItem }) => {
               title={title}
               description={description}
             />
-          );
+          )
         }
       })}
     </List>
-  );
-};
+  )
+}
 
-export default FactsList;
+export default FactsList

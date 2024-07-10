@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Theme } from "../utils/theme";
+import styled from 'styled-components'
+import { Theme } from '../utils/theme'
 
 export const Container = styled.div`
   min-width: 320px;
@@ -19,23 +19,23 @@ export const Container = styled.div`
     width: 1440px;
     padding: 0 100px;
   }
-`;
+`
 
 export const Title = styled.h1`
   text-align: center;
   font-size: 24px;
   margin-bottom: 30px;
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
-`;
+`
 
 export const Section = styled.section`
   padding: 40px 0;
-`;
+`
 
 export const ErrorMessage = styled.p`
   padding: 30px 0;
   text-align: center;
-`;
+`
 
 export const Card = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ export const Card = styled.div`
   align-items: center;
   gap: 20px;
   color: ;
-`;
+`
 
 export const CardList = styled.ul`
   display: flex;
@@ -52,7 +52,7 @@ export const CardList = styled.ul`
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
-`;
+`
 
 export const CardImage = styled.img`
   width: 200px;
@@ -60,7 +60,7 @@ export const CardImage = styled.img`
   @media screen and (min-width: 768px) {
     width: 500px;
   }
-`;
+`
 
 export const Button = styled.button`
   cursor: pointer;
@@ -79,11 +79,11 @@ export const Button = styled.button`
   &:focus {
     color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   }
-`;
+`
 
 export const BottomContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 15px;
-`;
+`

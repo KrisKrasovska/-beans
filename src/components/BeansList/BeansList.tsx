@@ -1,12 +1,12 @@
-import { FC, RefObject } from "react";
-import { BeanType } from "../../types/types";
-import BeansItem from "./BeansItem";
-import { List } from "./BeansList.styled";
+import { FC, RefObject } from 'react'
+import { BeanType } from '../../types/types'
+import BeansItem from './BeansItem'
+import { List } from './BeansList.styled'
 
 type PropsBeansList = {
-  beansList: BeanType[];
-  lastItem: RefObject<HTMLLIElement>;
-};
+  beansList: BeanType[]
+  lastItem: RefObject<HTMLLIElement>
+}
 
 const BeansList: FC<PropsBeansList> = ({ beansList, lastItem }) => {
   return (
@@ -22,7 +22,7 @@ const BeansList: FC<PropsBeansList> = ({ beansList, lastItem }) => {
               description={description}
               ref={lastItem}
             />
-          );
+          )
         } else {
           return (
             <BeansItem
@@ -32,11 +32,11 @@ const BeansList: FC<PropsBeansList> = ({ beansList, lastItem }) => {
               imageUrl={imageUrl}
               description={description}
             />
-          );
+          )
         }
       })}
     </List>
-  );
-};
+  )
+}
 
-export default BeansList;
+export default BeansList

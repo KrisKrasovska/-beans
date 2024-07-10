@@ -1,13 +1,13 @@
-import { DefaultTheme, createGlobalStyle } from "styled-components";
-import "modern-normalize";
+import { DefaultTheme, createGlobalStyle } from 'styled-components'
+import 'modern-normalize'
 
 interface Theme extends DefaultTheme {
   color: {
-    primaryColor: string;
-    bg: string;
-    bgMain: string;
-    secondaryColor: string;
-  };
+    primaryColor: string
+    bg: string
+    bgMain: string
+    secondaryColor: string
+  }
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -49,4 +49,4 @@ export const GlobalStyle = createGlobalStyle`
 	 width: 100%;
 	 height: auto;
 	 display:block;}
-`;
+`

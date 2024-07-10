@@ -1,14 +1,14 @@
-import { ForwardedRef, forwardRef } from "react";
-import { CardText, CardTitle, Item } from "../BeansList/BeansList.styled";
-import { Link } from "react-router-dom";
+import { ForwardedRef, forwardRef } from 'react'
+import { CardText, CardTitle, Item } from '../BeansList/BeansList.styled'
+import { Link } from 'react-router-dom'
 
 type PropsRecipesItem = {
-  recipeId: number;
-  name: string;
-  description: string;
-  totalTime: string;
-  makingAmount: string;
-};
+  recipeId: number
+  name: string
+  description: string
+  totalTime: string
+  makingAmount: string
+}
 
 const RecipesItem = forwardRef<HTMLLIElement, PropsRecipesItem>(
   (
@@ -23,8 +23,8 @@ const RecipesItem = forwardRef<HTMLLIElement, PropsRecipesItem>(
         <CardText>{totalTime}</CardText>
         <Link to={`/recipes/${recipeId}`}>View more details</Link>
       </Item>
-    );
+    )
   }
-);
+)
 
-export default RecipesItem;
+export default RecipesItem

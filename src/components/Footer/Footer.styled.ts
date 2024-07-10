@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Theme } from "../../utils/theme";
+import styled from 'styled-components'
+import { Theme } from '../../utils/theme'
 
 export const FooterBlock = styled.footer`
   padding: 20px 0;
@@ -8,8 +8,8 @@ export const FooterBlock = styled.footer`
     width: 100%;
     text-align: center;
   }
-`;
+`
 
 export const FooterText = styled.p`
   font-size: 16px;
-`;
+`

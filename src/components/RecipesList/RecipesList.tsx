@@ -1,12 +1,12 @@
-import { FC, RefObject } from "react";
-import { RecipeType } from "../../types/types";
-import { List } from "../BeansList/BeansList.styled";
-import RecipesItem from "./RecipesItem";
+import { FC, RefObject } from 'react'
+import { RecipeType } from '../../types/types'
+import { List } from '../BeansList/BeansList.styled'
+import RecipesItem from './RecipesItem'
 
 type PropsRecipesList = {
-  recipesList: RecipeType[];
-  lastItem: RefObject<HTMLLIElement>;
-};
+  recipesList: RecipeType[]
+  lastItem: RefObject<HTMLLIElement>
+}
 
 const RecipesList: FC<PropsRecipesList> = ({ recipesList, lastItem }) => {
   return (
@@ -24,7 +24,7 @@ const RecipesList: FC<PropsRecipesList> = ({ recipesList, lastItem }) => {
                 makingAmount={makingAmount}
                 ref={lastItem}
               />
-            );
+            )
           } else {
             return (
               <RecipesItem
@@ -35,12 +35,12 @@ const RecipesList: FC<PropsRecipesList> = ({ recipesList, lastItem }) => {
                 totalTime={totalTime}
                 makingAmount={makingAmount}
               />
-            );
+            )
           }
         }
       )}
     </List>
-  );
-};
+  )
+}
 
-export default RecipesList;
+export default RecipesList

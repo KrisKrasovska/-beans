@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Theme } from "../../utils/theme";
-import { NavLink } from "react-router-dom";
+import styled from 'styled-components'
+import { Theme } from '../../utils/theme'
+import { NavLink } from 'react-router-dom'
 
 export const List = styled.ul`
   display: flex;
@@ -13,7 +13,7 @@ export const List = styled.ul`
     flex-wrap: wrap;
     gap: 25px;
   }
-`;
+`
 
 export const Item = styled.li`
   display: flex;
@@ -41,33 +41,33 @@ export const Item = styled.li`
   @media screen and (min-width: 1200px) {
     width: calc((100% - 75px) / 4);
   }
-`;
+`
 
 export const BeansTitle = styled(NavLink)`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 20px;
   text-align: center;
   display: block;
-`;
+`
 
 export const BeansImg = styled.img`
   width: 150px;
   margin: 0 auto;
-`;
+`
 
 export const BeansText = styled.p`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 16px;
-`;
+`
 
 export const CardTitle = styled.p`
   color: ${(p: { theme: Theme }) => p.theme.color.secondaryColor};
   font-size: 20px;
   text-align: center;
   display: block;
-`;
+`
 
 export const CardText = styled.p`
   color: ${(p: { theme: Theme }) => p.theme.color.thirdColor};
   font-size: 14px;
-`;
+`

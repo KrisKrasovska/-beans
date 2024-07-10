@@ -1,12 +1,12 @@
-import { FC, RefObject } from "react";
-import { CombinationType } from "../../types/types";
-import { List } from "../BeansList/BeansList.styled";
-import CombinationsItem from "./CombinationsItem";
+import { FC, RefObject } from 'react'
+import { CombinationType } from '../../types/types'
+import { List } from '../BeansList/BeansList.styled'
+import CombinationsItem from './CombinationsItem'
 
 type PropsCombinationsList = {
-  combinationsList: CombinationType[];
-  lastItem: RefObject<HTMLLIElement>;
-};
+  combinationsList: CombinationType[]
+  lastItem: RefObject<HTMLLIElement>
+}
 
 const CombinationsList: FC<PropsCombinationsList> = ({
   combinationsList,
@@ -24,7 +24,7 @@ const CombinationsList: FC<PropsCombinationsList> = ({
               tag={tag}
               ref={lastItem}
             />
-          );
+          )
         } else {
           return (
             <CombinationsItem
@@ -33,11 +33,11 @@ const CombinationsList: FC<PropsCombinationsList> = ({
               name={name}
               tag={tag}
             />
-          );
+          )
         }
       })}
     </List>
-  );
-};
+  )
+}
 
-export default CombinationsList;
+export default CombinationsList

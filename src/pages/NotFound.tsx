@@ -1,14 +1,14 @@
-import { Container } from "./Home.styled"; 
+import { Container } from './Home.styled'
 
 const NotFound = () => {
   return (
     <Container>
       <main style={{ textAlign: 'center' }}>
         <b style={{ fontSize: 62 }}>404</b>
-        <p>Страница не найдена...</p>
+        <p>Page is not found...</p>
       </main>
     </Container>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound
