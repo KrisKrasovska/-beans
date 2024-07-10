@@ -21,7 +21,6 @@ const Recipes = () => {
           `https://jellybellywikiapi.onrender.com/api/recipes?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
-        console.log(data)
         const normalizedData: RecipeType[] = data.items.map(
           ({
             recipeId,

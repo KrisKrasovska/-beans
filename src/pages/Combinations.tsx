@@ -23,7 +23,6 @@ const Combinations = () => {
           `https://jellybellywikiapi.onrender.com/api/combinations?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
-        console.log(data)
         setCombinationsList((prevCombinationsList) => {
           const newCombinationsList = data.items.filter(
             (newItem: CombinationType) =>

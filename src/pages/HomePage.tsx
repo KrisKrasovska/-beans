@@ -21,7 +21,6 @@ const HomePage = () => {
           `https://jellybellywikiapi.onrender.com/api/beans?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
-        console.log(data)
         const normalizedData: BeanType[] = data.items.map(
           ({ beanId, flavorName, imageUrl, description }: BeanType) => ({
             beanId,

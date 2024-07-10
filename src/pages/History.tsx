@@ -21,7 +21,6 @@ const History = () => {
           `https://jellybellywikiapi.onrender.com/api/mileStones?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
-        console.log(data)
         setHistoryList((prevHistoryList) => {
           const newHistoryList = data.items.filter(
             (newItem: MileStone) =>

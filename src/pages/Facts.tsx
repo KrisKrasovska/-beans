@@ -21,7 +21,7 @@ const Facts = () => {
           `https://jellybellywikiapi.onrender.com/api/facts?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
-        console.log(data)
+
         const normalizedData: FactsType[] = data.items.map(
           ({ factId, title, description }: FactsType) => ({
             factId,
