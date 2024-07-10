@@ -53,26 +53,28 @@ const HomePage = () => {
   }, [pageIndex, totalCounts])
 
   useEffect(() => {
+    if (loading) {
+      return
+    }
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
           if (entries[0].isIntersecting) {
-            if (pageIndex <= Math.ceil(totalCounts / 10)) {
-              setPageIndex((prevPage) => prevPage + 1)
-            }
+            setPageIndex((prevPage) => prevPage + 1)
           }
         }
       },
       { threshold: 1 }
     )
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current)
+    const currentTarget = observerTarget.current
+    if (currentTarget) {
+      observer.observe(currentTarget)
     }
 
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current)
+      if (currentTarget) {
+        observer.unobserve(currentTarget)
       }
     }
   }, [observerTarget])
