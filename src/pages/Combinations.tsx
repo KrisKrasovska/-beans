@@ -1,4 +1,4 @@
-import { createRef, RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CombinationType } from '../types/types'
 import { ErrorMessage, Section, Title } from './Home.styled'
 import axios from 'axios'
@@ -12,8 +12,7 @@ const Combinations = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [pageIndex, setPageIndex] = useState<number>(1)
-  const lastItem: RefObject<HTMLLIElement> = createRef()
-  const observer = useRef<IntersectionObserver | null>(null)
+  const observerTarget = useRef<HTMLDivElement | null>(null)
   const [totalCounts, setTotalCounts] = useState<number>(10)
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const Combinations = () => {
           `https://jellybellywikiapi.onrender.com/api/combinations?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
-
+        console.log(data)
         setCombinationsList((prevCombinationsList) => {
           const newCombinationsList = data.items.filter(
             (newItem: CombinationType) =>
@@ -42,34 +41,41 @@ const Combinations = () => {
         setLoading(false)
       }
     }
-    if (pageIndex <= totalCounts / 10) fetchCombinations()
+    if (pageIndex <= Math.ceil(totalCounts / 10)) {
+      fetchCombinations()
+    }
   }, [pageIndex, totalCounts])
 
   useEffect(() => {
-    if (observer.current) {
-      observer.current.disconnect()
+    if (loading) {
+      return
     }
-
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (pageIndex < totalCounts / 10)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
           setPageIndex((prevPage) => prevPage + 1)
-      }
-    })
+        }
+      },
+      { threshold: 1 }
+    )
 
-    if (lastItem.current) {
-      observer.current.observe(lastItem.current)
+    const currentTarget = observerTarget.current
+    if (currentTarget) {
+      observer.observe(currentTarget)
     }
-  }, [lastItem, totalCounts, pageIndex])
+
+    return () => {
+      if (currentTarget) {
+        observer.unobserve(currentTarget)
+      }
+    }
+  }, [observerTarget, loading])
 
   return (
     <Section>
       <Title>How can you combine?</Title>
       {combinationsList.length > 0 && !error && (
-        <CombinationsList
-          lastItem={lastItem}
-          combinationsList={combinationsList}
-        />
+        <CombinationsList combinationsList={combinationsList} />
       )}
 
       {!loading && error && (
@@ -78,6 +84,7 @@ const Combinations = () => {
         </ErrorMessage>
       )}
       {loading && combinationsList.length === 0 && <Loader />}
+      {combinationsList.length > 0 && <div ref={observerTarget}></div>}
     </Section>
   )
 }

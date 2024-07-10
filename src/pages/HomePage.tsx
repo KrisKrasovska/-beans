@@ -59,9 +59,7 @@ const HomePage = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          if (entries[0].isIntersecting) {
-            setPageIndex((prevPage) => prevPage + 1)
-          }
+          setPageIndex((prevPage) => prevPage + 1)
         }
       },
       { threshold: 1 }

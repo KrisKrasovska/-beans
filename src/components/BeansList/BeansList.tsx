@@ -10,29 +10,15 @@ type PropsBeansList = {
 const BeansList: FC<PropsBeansList> = ({ beansList }) => {
   return (
     <List>
-      {beansList.map(({ beanId, flavorName, imageUrl, description }, index) => {
-        if (index + 1 === beansList.length) {
-          return (
-            <BeansItem
-              key={beanId}
-              beanId={beanId}
-              flavorName={flavorName}
-              imageUrl={imageUrl}
-              description={description}
-            />
-          )
-        } else {
-          return (
-            <BeansItem
-              key={beanId}
-              beanId={beanId}
-              flavorName={flavorName}
-              imageUrl={imageUrl}
-              description={description}
-            />
-          )
-        }
-      })}
+      {beansList.map(({ beanId, flavorName, imageUrl, description }) => (
+        <BeansItem
+          key={beanId}
+          beanId={beanId}
+          flavorName={flavorName}
+          imageUrl={imageUrl}
+          description={description}
+        />
+      ))}
     </List>
   )
 }
