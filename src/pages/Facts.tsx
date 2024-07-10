@@ -1,4 +1,4 @@
-import { createRef, RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FactsType } from '../types/types'
 import { ErrorMessage, Section, Title } from './Home.styled'
 import axios from 'axios'
@@ -10,8 +10,7 @@ const Facts = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [pageIndex, setPageIndex] = useState<number>(1)
-  const lastItem: RefObject<HTMLLIElement> = createRef()
-  const observer = useRef<IntersectionObserver | null>(null)
+  const observerTarget = useRef<HTMLDivElement | null>(null)
   const [totalCounts, setTotalCounts] = useState<number>(10)
 
   useEffect(() => {
@@ -22,6 +21,7 @@ const Facts = () => {
           `https://jellybellywikiapi.onrender.com/api/facts?pageIndex=${pageIndex}&pageSize=10`
         )
         const { data } = results
+        console.log(data)
         const normalizedData: FactsType[] = data.items.map(
           ({ factId, title, description }: FactsType) => ({
             factId,
@@ -46,32 +46,40 @@ const Facts = () => {
         setLoading(false)
       }
     }
-    if (pageIndex <= totalCounts / 10) fetchFacts()
+    if (pageIndex <= Math.ceil(totalCounts / 10)) {
+      fetchFacts()
+    }
   }, [pageIndex, totalCounts])
 
   useEffect(() => {
-    if (observer.current) {
-      observer.current.disconnect()
+    if (loading) {
+      return
     }
-
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (pageIndex < totalCounts / 10)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
           setPageIndex((prevPage) => prevPage + 1)
-      }
-    })
+        }
+      },
+      { threshold: 1 }
+    )
 
-    if (lastItem.current) {
-      observer.current.observe(lastItem.current)
+    const currentTarget = observerTarget.current
+    if (currentTarget) {
+      observer.observe(currentTarget)
     }
-  }, [lastItem, totalCounts, pageIndex])
+
+    return () => {
+      if (currentTarget) {
+        observer.unobserve(currentTarget)
+      }
+    }
+  }, [observerTarget, loading])
 
   return (
     <Section>
       <Title>Interesting Facts</Title>
-      {factsList.length > 0 && !error && (
-        <FactsList lastItem={lastItem} factsList={factsList} />
-      )}
+      {factsList.length > 0 && !error && <FactsList factsList={factsList} />}
 
       {!loading && error && (
         <ErrorMessage>
@@ -79,6 +87,7 @@ const Facts = () => {
         </ErrorMessage>
       )}
       {loading && factsList.length === 0 && <Loader />}
+      {factsList.length > 0 && <div ref={observerTarget}></div>}
     </Section>
   )
 }
