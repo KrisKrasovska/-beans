@@ -5,8 +5,8 @@ interface Theme extends DefaultTheme {
   color: {
     primaryColor: string;
     bg: string;
-	 bgMain: string;
-	 secondaryColor: string;
+    bgMain: string;
+    secondaryColor: string;
   };
 }
 

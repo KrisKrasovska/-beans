@@ -3,7 +3,7 @@ import "./App.css";
 import { theme } from "./utils/theme";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./GlobalStyle";
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import { Layout } from "./components/Layout/Layout";
 import NotFound from "./pages/NotFound";
@@ -14,6 +14,26 @@ import Combinations from "./pages/Combinations";
 import History from "./pages/History";
 import BeansPage from "./pages/BeansPage";
 import RecipesPage from "./pages/RecipesPage";
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { index: true, element: <HomePage /> },
+        { path: "beans/:id", element: <BeansPage /> },
+        { path: "facts", element: <Facts /> },
+        { path: "recipes", element: <Recipes /> },
+        { path: "recipes/:id", element: <RecipesPage /> },
+        { path: "combinations", element: <Combinations /> },
+        { path: "history", element: <History /> },
+      ],
+    },
+    { path: "*", element: <NotFound /> },
+  ],
+  { basename: "/beans" }
+);
 
 const App: FC = () => {
   return (
@@ -32,18 +52,7 @@ const App: FC = () => {
         theme="colored"
       />
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/beans/:id" element={<BeansPage />} />
-          <Route path="/facts" element={<Facts />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/recipes/:id" element={<RecipesPage />} />
-          <Route path="/combinations" element={<Combinations />} />
-          <Route path="/history" element={<History />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 };
