@@ -1,4 +1,4 @@
-import { FC, RefObject } from 'react'
+import { FC } from 'react'
 import { BeanType } from '../../types/types'
 import BeansItem from './BeansItem'
 import { List } from './BeansList.styled'

@@ -77,7 +77,7 @@ const HomePage = () => {
         observer.unobserve(currentTarget)
       }
     }
-  }, [observerTarget])
+  }, [observerTarget, loading])
 
   return (
     <Section>
@@ -90,7 +90,7 @@ const HomePage = () => {
         </ErrorMessage>
       )}
       {loading && beansList.length === 0 && <Loader />}
-      <div ref={observerTarget}></div>
+      {beansList.length > 0 && <div ref={observerTarget}></div>}
     </Section>
   )
 }
